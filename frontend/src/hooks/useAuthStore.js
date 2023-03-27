@@ -38,7 +38,7 @@ export const useAuthStore = () => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
             dispatch( onLogin({ name: data.name, uid: data.uuid }));
-
+            
         } catch(error){
             dispatch( onLogout( error.response.data?.msg || 'User already exists'));
             setTimeout(() => {
@@ -68,15 +68,18 @@ export const useAuthStore = () => {
         dispatch(onLogout());
     }
 
+   
+
     return {
         // Propiedades
         status, 
         user, 
         errorMessage,
+        
         //Metodos (acciones para interactuar con el store)
         startLogin,
         startRegister,
         checkAuthToken,
-        startLogout
+        startLogout,
     }
 }

@@ -8,16 +8,26 @@ import ModalUpdateUser from "../components/ModalUpdateUser";
 import { useAuthStore } from "../hooks/useAuthStore";
 
 export const Home = () => {
+  
   const [dataApi, setDataApi] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [userToUpdate, setUserToUpdatet] = useState();
 
-  const { startLogout} = useAuthStore();
-  
+  const { startLogout } = useAuthStore();
+
   const getUserInformation = async () => {
     try {
       const resp = await API.get("/users");
       setDataApi(resp.data?.results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteUserTable = async ({id}) => {
+    try {
+      const { data } = await API.delete(`/users/${id}`);
+      console.log("data", { data }); 
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +102,9 @@ export const Home = () => {
                 >
                   Edit
                 </Button>{" "}
-                <Button variant="secondary">Delete</Button>{" "}
+                <Button variant="secondary" onClick={deleteUserTable}>
+                  Delete
+                </Button>{" "}
               </td>
             </tr>
           ))}

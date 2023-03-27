@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 
 export default function ModalUpdateUser({ show, setShow, usrToUpdate }) {
   const handleClose = () => setShow(false);
-  console.log(usrToUpdate);
+
 
   return (
     <>

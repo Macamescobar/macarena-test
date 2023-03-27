@@ -28,6 +28,7 @@ const createUser = async (req, res) => {
         name: userStored.name,
         email: userStored.email,
       });
+      
     } else {
       return res.status(400).json({
         ok: false,
