@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
       userStored.password = bcrypt.hashSync(password, salt);
 
       userStored.save();
-
+      
       // por default el usuario tendra un permiso que sera el VISUALIZACION_DASHBOARDS
       savePermissionDefault(userStored);
 
@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
         name: userStored.name,
         email: userStored.email,
       });
-      
+
     } else {
       return res.status(400).json({
         ok: false,

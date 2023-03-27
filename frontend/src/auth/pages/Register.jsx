@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useAuthStore } from "../../hooks/useAuthStore";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
+import { useNavigate } from 'react-router'
 
 
 const signUpFormFields = {
@@ -18,11 +19,12 @@ export const Register = () => {
   
   const { errorMessage, startRegister  } = useAuthStore();
   const {userName, email, password, onInputChange } = useForm(signUpFormFields);
-  
+  const navigate = useNavigate();
   
   const signUpSubmit = (event) => {
     event.preventDefault();
     startRegister({ name: userName, email: email, password: password });
+    navigate('login')
   };
 
   useEffect(() => {

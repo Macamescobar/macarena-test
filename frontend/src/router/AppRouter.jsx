@@ -13,7 +13,8 @@ export const AppRouter = () => {
   }, []);
 
   if (status === "checking") {
-    return <h3> Loading ... </h3>;
+    return <h3> Loading ... </h3>
+    ;
   }
 
   return (
@@ -29,7 +30,7 @@ export const AppRouter = () => {
             : (
                 <>
                   <Route path="/" element={<Home />} />
-                  <Route path="/*" element={ <Navigate to="/" />} />
+                  <Route path="/*" element={ <Navigate to="/auth/login" />} />
                 </>
               )
       }

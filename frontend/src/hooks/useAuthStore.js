@@ -7,8 +7,8 @@ export const useAuthStore = () => {
 
     const { status, user, errorMessage } = useSelector( state => state.auth);
     const dispatch = useDispatch();
-
-
+    
+    
     const startLogin = async({ email, password }) => {
         // app en estado de carga
        dispatch( onChecking());
@@ -31,14 +31,13 @@ export const useAuthStore = () => {
     const startRegister = async({ name, email, password }) => {
 
         dispatch( onChecking());
-
+        
         try {
 
             const { data } = await API.post('/auth/register', { name, email, password});
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
             dispatch( onLogin({ name: data.name, uid: data.uuid }));
-            
         } catch(error){
             dispatch( onLogout( error.response.data?.msg || 'User already exists'));
             setTimeout(() => {
